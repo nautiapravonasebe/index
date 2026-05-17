@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Власна Вісь — NAUTIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D080;
+    --gold-dim: #8a6f30;
+    --bg: #1a1d21;
+    --bg2: #22262b;
+    --bg3: #2a2f36;
+    --white: #F0F0F0;
+    --gray: #888;
+    --cream: #F5F0E8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 60%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(56px, 10vw, 96px);
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .gold-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .hero-hook {
+    max-width: 560px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: #c8c8c8;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-hook em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 48px;
+    background: var(--gold);
+    color: #0e0f11;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 14px 48px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.25s, background 0.25s;
+    cursor: pointer;
+    background: transparent;
+  }
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+
+  /* ── PAIN ── */
+  .section {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.4), transparent);
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .pain-item {
+    background: var(--bg);
+    padding: 36px 28px;
+    transition: background 0.3s;
+  }
+  .pain-item:hover { background: var(--bg2); }
+
+  .pain-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.3);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .pain-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #c8c8c8;
+    line-height: 1.5;
+  }
+
+  /* ── ABOUT ── */
+  .about-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .about-wrap { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .product-card {
+    background: var(--bg2);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 48px 36px;
+    position: relative;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .product-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+  }
+
+  .product-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .product-sub {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .product-divider {
+    height: 1px;
+    background: rgba(201,168,76,0.2);
+    margin: 32px 0;
+  }
+
+  .product-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .product-price {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .price-currency {
+    font-size: 20px;
+    color: var(--gold-dim);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+  }
+  .price-note {
+    font-size: 11px;
+    color: var(--gray);
+    margin-left: auto;
+  }
+
+  .about-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+  .about-text h2 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #aaa;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  /* ── WEEKS ── */
+  .weeks-section {
+    background: var(--bg2);
+    padding: 100px 24px;
+  }
+
+  .weeks-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.12);
+    margin-top: 56px;
+  }
+
+  .week-card {
+    background: var(--bg2);
+    padding: 40px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .week-card:hover { background: var(--bg3); }
+
+  .week-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.08);
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .week-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .week-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .week-sub {
+    font-size: 11px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+
+  .week-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .week-list li {
+    font-size: 13px;
+    color: #999;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .week-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+    font-size: 11px;
+  }
+
+  /* ── WHAT'S INSIDE ── */
+  .inside-section {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .inside-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .inside-item {
+    padding: 28px 24px;
+    border: 1px solid rgba(201,168,76,0.12);
+    background: var(--bg2);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .inside-item:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: var(--bg3);
+  }
+
+  .inside-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .inside-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .inside-desc {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  /* ── FOR WHOM ── */
+  .whom-section {
+    background: var(--bg2);
+    padding: 100px 24px;
+  }
+  .whom-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 0;
+  }
+
+  @media (max-width: 768px) {
+    .whom-inner { grid-template-columns: 1fr; }
+  }
+
+  .whom-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .whom-block.yes h3 { color: var(--gold); }
+  .whom-block.no h3 { color: #555; }
+
+  .whom-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .whom-list li {
+    font-size: 14px;
+    color: #aaa;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .whom-block.yes .whom-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .whom-block.no .whom-list li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: #444;
+  }
+
+  /* ── RESULTS ── */
+  .results-section {
+    padding: 100px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .results-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .results-title em { color: var(--gold); font-style: italic; }
+
+  .results-note {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 60px;
+    font-style: italic;
+  }
+
+  .results-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 60px;
+  }
+
+  .results-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #c8c8c8;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .results-list li:last-child { border-bottom: none; }
+
+  .result-check {
+    color: var(--gold);
+    font-size: 16px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── BUY BLOCK ── */
+  .buy-section {
+    background: var(--bg2);
+    padding: 100px 24px;
+  }
+
+  .buy-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .buy-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 7vw, 64px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .buy-title em { color: var(--gold); font-style: italic; }
+
+  .buy-sub {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .buy-card {
+    background: var(--bg);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 48px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .buy-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .buy-price-wrap {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+
+  .buy-currency {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--gold-dim);
+  }
+
+  .buy-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .buy-includes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+
+  .buy-includes li {
+    font-size: 13px;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .buy-includes li::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .buy-note {
+    font-size: 11px;
+    color: #555;
+    margin-top: 16px;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px 24px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    text-align: center;
+  }
+
+  .footer-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: #444;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .product-stats { grid-template-columns: 1fr 1fr; }
+    .buy-card { padding: 32px 24px; }
+    .buy-price { font-size: 56px; }
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(26,29,33,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .nav-brand {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .nav-cta {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.35);
+    padding: 8px 20px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .nav-cta:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">N A U T I A</span>
+  <a href="#buy" class="nav-cta">Отримати</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="brand">N A U T I A &nbsp;·&nbsp; Інтенсив</p>
+  <h1 class="hero-title">Власна <span>Вісь</span></h1>
+  <p class="hero-sub">30 днів · Практичний щоденник</p>
+  <div class="gold-line"></div>
+  <p class="hero-hook">
+    Ти погоджуєшся, коли хочеш відмовити.<br>
+    Виправдовуєшся, хоча нічого не винен.<br>
+    Відкладаєш важливе вже <em>третій місяць поспіль.</em>
+  </p>
+  <div class="cta-group">
+    <a href="#buy" class="btn-primary">Почати прямо зараз</a>
+    <a href="#program" class="btn-ghost">Що всередині</a>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="section reveal">
+  <div class="section-label">Ти впізнаєш себе?</div>
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-icon">01</div>
+      <p class="pain-text">Чужі очікування важать більше за власні рішення</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">02</div>
+      <p class="pain-text">Кажеш «так» — і потім ненавидиш себе за це</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">03</div>
+      <p class="pain-text">Є важлива справа. Вже три місяці «не найкращий момент»</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">04</div>
+      <p class="pain-text">Реагуєш на кожну провокацію — і потім жалкуєш</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">05</div>
+      <p class="pain-text">Важко сказати «Ні» без довгих пояснень і провини</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">06</div>
+      <p class="pain-text">Відчуття, що живеш «не своїм» — чимось розмитим, не справжнім</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT + PRODUCT CARD -->
+<div class="about-wrap">
+  <div class="about-visual reveal">
+    <div class="product-card">
+      <div class="product-badge">PDF-щоденник</div>
+      <h2 class="product-title">Власна<br>Вісь</h2>
+      <p class="product-sub">Інтенсив матеріалізації волі</p>
+
+      <div class="product-stats">
+        <div class="stat-item">
+          <span class="stat-num">30</span>
+          <span class="stat-label">Днів</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Рівні</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">60+</span>
+          <span class="stat-label">Практик</span>
+        </div>
+      </div>
+
+      <div class="product-divider"></div>
+
+      <div class="product-price">
+        <span class="price-currency">$</span>
+        <span class="price-amount">19</span>
+        <span class="price-note">одноразово</span>
+      </div>
+
+      <a href="#buy" class="btn-primary" style="display:block;text-align:center;width:100%;">
+        Отримати інтенсив
+      </a>
+    </div>
+  </div>
+
+  <div class="about-text reveal">
+    <h2>Це не книга.<br>Це не курс.<br>Це <em>ковадло.</em></h2>
+    <p>Щоденний практичний інтенсив — без теорії, без лекцій, без мотиваційних цитат.</p>
+    <p>Кожен день — одне конкретне завдання. Одна дія. Один крок у бік людини, з якою рахуються.</p>
+    <p>Ніякої магії. Ніякого «відчуй себе краще». Тільки реальні зміни через реальні дії — день за днем.</p>
+  </div>
+</div>
+
+<!-- WEEKS -->
+<section class="weeks-section" id="program">
+  <div class="weeks-inner">
+    <div class="section-label reveal">Програма 30 днів</div>
+    <div class="weeks-grid">
+      <div class="week-card reveal">
+        <div class="week-num">1</div>
+        <div class="week-label">Тиждень перший</div>
+        <h3 class="week-title">Демаркація</h3>
+        <p class="week-sub">Кордони та енергія</p>
+        <ul class="week-list">
+          <li>Відключення інформаційного шуму</li>
+          <li>Тиша в розмовах</li>
+          <li>Харчова та словесна дисципліна</li>
+          <li>Чистка простору</li>
+        </ul>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">2</div>
+        <div class="week-label">Тиждень другий</div>
+        <h3 class="week-title">Вертикаль</h3>
+        <p class="week-sub">Тіло та структура</p>
+        <ul class="week-list">
+          <li>Три години тиші з прямою спиною</li>
+          <li>Прямий погляд і постава</li>
+          <li>Стійкість під тиском</li>
+          <li>Загартування холодом</li>
+        </ul>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">3</div>
+        <div class="week-label">Тиждень третій</div>
+        <h3 class="week-title">Експансія</h3>
+        <p class="week-sub">Намір та дія</p>
+        <ul class="week-list">
+          <li>Прорив відкладеного</li>
+          <li>Фінансова воля</li>
+          <li>Мова наміру замість «спробую»</li>
+          <li>Матеріалізація ідей</li>
+        </ul>
+      </div>
+      <div class="week-card reveal">
+        <div class="week-num">4</div>
+        <div class="week-label">Тиждень четвертий</div>
+        <h3 class="week-title">Суверенітет</h3>
+        <p class="week-sub">Влада та статус</p>
+        <ul class="week-list">
+          <li>«Ні» без виправдань і провини</li>
+          <li>Внутрішній закон</li>
+          <li>Тиша майстра</li>
+          <li>Ініціація нового себе</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside-section">
+  <div class="section-label reveal">Що всередині</div>
+  <div class="inside-grid">
+    <div class="inside-item reveal">
+      <div class="inside-num">30</div>
+      <div class="inside-title">Щоденних завдань</div>
+      <p class="inside-desc">Коротко, конкретно, без води. Читаєш вранці — робиш протягом дня.</p>
+    </div>
+    <div class="inside-item reveal">
+      <div class="inside-num">60</div>
+      <div class="inside-title">Питань рефлексії</div>
+      <p class="inside-desc">Два питання після кожного дня — щоб зафіксувати зміну, поки вона свіжа.</p>
+    </div>
+    <div class="inside-item reveal">
+      <div class="inside-num">4</div>
+      <div class="inside-title">Перехідних розділи</div>
+      <p class="inside-desc">Сторінки між тижнями — щоб інтегрувати пройдене перед наступним рівнем.</p>
+    </div>
+    <div class="inside-item reveal">
+      <div class="inside-num">87</div>
+      <div class="inside-title">Сторінок</div>
+      <p class="inside-desc">PDF для роздруку або заповнення онлайн. Розбитий пополам для зручності.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="weeks-section">
+  <div class="weeks-inner">
+    <div class="section-label reveal">Для кого</div>
+    <div class="whom-inner reveal" style="margin-top:56px;">
+      <div class="whom-block yes">
+        <h3>Це для тебе, якщо:</h3>
+        <ul class="whom-list">
+          <li>Втомився жити «не своїм» — і хочеш щось реально змінити</li>
+          <li>Хочеш, щоб твоє слово мало вагу — в роботі, стосунках, з собою</li>
+          <li>Не віриш у магію, але готовий до реальних дій кожен день</li>
+          <li>Є конкретна проблема: прокрастинація, нездатність відмовити, розпорошеність</li>
+          <li>Готовий бути чесним із собою — навіть якщо незручно</li>
+        </ul>
+      </div>
+      <div class="whom-block no">
+        <h3>Це не для тебе, якщо:</h3>
+        <ul class="whom-list">
+          <li>Шукаєш натхнення без зобов'язань</li>
+          <li>Хочеш читати, але не робити</li>
+          <li>Чекаєш «правильного моменту» для змін</li>
+          <li>Тобі потрібна клінічна підтримка — тут її немає</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section">
+  <div class="section-label reveal" style="justify-content:center;">
+    <span>Після 30 днів</span>
+  </div>
+  <h2 class="results-title reveal">Не обіцяємо<br><em>трансформацію за місяць.</em></h2>
+  <p class="results-note reveal">Але якщо пройдеш усі 30 днів — ось що буде точно:</p>
+  <ul class="results-list reveal">
+    <li><span class="result-check">→</span>Кажеш «Ні» без довгих пояснень і без провини</li>
+    <li><span class="result-check">→</span>Починаєш день з найважчого, а не найлегшого</li>
+    <li><span class="result-check">→</span>Не реагуєш автоматично на кожну провокацію</li>
+    <li><span class="result-check">→</span>Знаєш, де твоя енергія і куди вона іде</li>
+    <li><span class="result-check">→</span>Тримаєш слово, дане собі</li>
+  </ul>
+</section>
+
+<!-- BUY -->
+<section class="buy-section" id="buy">
+  <div class="buy-inner">
+    <div class="section-label reveal" style="justify-content:center;"><span>Отримати доступ</span></div>
+    <h2 class="buy-title reveal">Починай<br><em>сьогодні.</em></h2>
+    <p class="buy-sub reveal">Одноразова оплата · Миттєвий доступ</p>
+
+    <div class="buy-card reveal">
+      <div class="buy-price-wrap">
+        <span class="buy-currency">$</span>
+        <span class="buy-price">19</span>
+      </div>
+
+      <ul class="buy-includes">
+        <li>PDF-щоденник «Власна Вісь» — 87 сторінок</li>
+        <li>30 щоденних практичних завдань</li>
+        <li>60 питань для рефлексії з полями для запису</li>
+        <li>Перехідні сторінки між тижнями</li>
+        <li>Версія для роздруку та онлайн-заповнення</li>
+      </ul>
+
+      <a href="#" class="btn-primary" style="display:block;text-align:center;width:100%;padding:18px;">
+        Отримати інтенсив — $19
+      </a>
+      <p class="buy-note">PDF надходить миттєво після оплати · Формат A4</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-brand">N A U T I A</p>
+  <p class="footer-copy">© 2026 · Усі права захищено власною волею</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
